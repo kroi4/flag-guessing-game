@@ -1,0 +1,22 @@
+.App-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.App-header img {
+  width: 200px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.App-header input {
+  margin: 10px;
+}
+
+.button-group {
+  display: flex; /* החלת flexbox */
+  justify-content: center; /* מרכז את הכפתורים */
+  gap: 10px; /* מרווח בין הכפתורים */
+}
