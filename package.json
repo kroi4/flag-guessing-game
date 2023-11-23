@@ -17,6 +17,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "homepage": "https://kroi4.github.io/flag-guessing-game/",
   "eslintConfig": {
     "extends": [
       "react-app",
