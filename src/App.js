@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
 import countryTranslations from './hebcountries.json';
 
@@ -9,12 +9,10 @@ function App() {
   const [correctAnswer, setCorrectAnswer] = useState('');
   const [feedback, setFeedback] = useState('');
 
-
   let hebrewToEnglish = {};
   countryTranslations.forEach(translation => {
     hebrewToEnglish[translation.Hebrew.trim()] = translation.English.toLowerCase();
   });
-  
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -34,19 +32,19 @@ function App() {
     fetchCountries();
   }, []);
 
-  const chooseRandomFlag = () => {
+  const chooseRandomFlag = useCallback(() => {
     const randomIndex = Math.floor(Math.random() * countries.length);
     setCurrentFlag(countries[randomIndex].flag);
     setCorrectAnswer(countries[randomIndex].name);
     setUserGuess('');
     setFeedback('');
-  };
+  }, [countries]); // הוספת התלות כאן
 
   useEffect(() => {
     if (countries.length > 0) {
       chooseRandomFlag();
     }
-  }, [countries]);
+  }, [countries, chooseRandomFlag]); // הוספת chooseRandomFlag למערך התלויות
 
   const handleGuessChange = (event) => {
     setUserGuess(event.target.value);
@@ -67,7 +65,6 @@ function App() {
       setFeedback('לא נכון, נסה שוב');
     }
   };
-  
   
   return (
     <div className="App">
